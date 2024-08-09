@@ -1,28 +1,245 @@
-<doctype html>
-  <html>
-    <head>
-       <style>
-          body {
-            text-aling: center;
-          }
-          h1 {
-            background-color: Black;
-            color: Red;
-            padding: 5px 15px 5px 15px;
-          }
-         button {
-           color: Red;
-           Border-radius: 5px;
-         }
-        </style>
-      </head>
-    <body>
-      <h1>Reptile Quiz by Harshik</h1>
-      <h2>By mode of development, Tortoise are?</h2>
-      <button>Oviparous</button>
-      <button>Vivipatous</button>
-      <br>
-      <button>Ovoviviparous</button>
-      <button>None of these</button>
-    </body>
-  </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reptile Quiz by Harshik</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 1em;
+            text-align: center;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        .quiz-section {
+            background: white;
+            padding: 2em;
+            margin-top: 1em;
+            border-radius: 8px;
+            margin-bottom: 3em; /* Ensure space for the footer */
+        }
+        h1 {
+            margin: 0;
+        }
+        h2 {
+            color: #4CAF50;
+        }
+        .option-button {
+            display: block;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 1em;
+            margin: 0.5em 0;
+            border-radius: 4px;
+            cursor: pointer;
+            text-align: center;
+            font-size: 1em;
+            width: 100%; /* Ensures all buttons are the same width */
+            max-width: 300px; /* Optional: limits the maximum width of the buttons */
+            height: 50px; /* Fixed height for uniform button size */
+            box-sizing: border-box; /* Includes padding in the button's width */
+        }
+        .option-button:hover {
+            background-color: #45a049;
+        }
+        form {
+            margin-top: 1em;
+        }
+        label {
+            display: block;
+            margin: 0.5em 0 0.2em;
+            font-weight: bold; /* Makes the label text bold */
+            color: #333; /* Ensures the label text color is visible */
+        }
+        input[type="text"], input[type="email"], textarea {
+            width: 100%; /* Full width to match the form layout */
+            padding: 0.5em;
+            margin-bottom: 1em;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box; /* Includes padding in the input's width */
+        }
+        textarea {
+            resize: vertical; /* Allows the user to resize the textarea vertically */
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 1em;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+            width: 100%;
+            max-width: 300px; /* Optional: limits the maximum width of the submit button */
+            height: 50px; /* Fixed height for uniform button size */
+            box-sizing: border-box; /* Includes padding in the button's width */
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        .message-display {
+            margin-top: 2em;
+            padding: 1em;
+            background: #e0f7fa;
+            border: 1px solid #b2ebf2;
+            border-radius: 4px;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1em;
+            position: relative; /* Allows the footer to be positioned normally */
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Reptile Quiz by Harshik</h1>
+            <p>Test your knowledge about reptiles with our fun quiz!</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <section class="quiz-section" id="quiz">
+            <!-- Questions will be dynamically added here -->
+        </section>
+
+        <section class="quiz-section">
+            <h2>Contact</h2>
+            <form id="contactForm">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                <br>
+                
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <br>
+                
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="4" required></textarea>
+                
+                <input type="submit" value="Send Message">
+            </form>
+
+            <div id="messageDisplay" class="message-display" style="display: none;"></div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Reptile Quiz by Harshik. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const questions = [
+            {
+                question: "Which of the following reptiles is known for its ability to change color?",
+                options: ["Chameleon", "Crocodile", "Gecko", "Python"],
+                answer: "Chameleon"
+            },
+            {
+                question: "What do you call a baby crocodile?",
+                options: ["Croc", "Hatchling", "Gator", "Cub"],
+                answer: "Hatchling"
+            },
+            {
+                question: "Which reptile is known for having a long, sticky tongue to catch insects?",
+                options: ["Chameleon", "Lizard", "Komodo Dragon", "Turtle"],
+                answer: "Chameleon"
+            },
+            {
+                question: "What is the primary diet of a Komodo Dragon?",
+                options: ["Fruits", "Insects", "Small mammals", "Fish"],
+                answer: "Small mammals"
+            },
+            {
+                question: "Which of these reptiles can live both in water and on land?",
+                options: ["Iguana", "Gecko", "Frog", "Alligator"],
+                answer: "Alligator"
+            },
+            {
+                question: "Which reptile is famous for having a hard shell to protect itself?",
+                options: ["Turtle", "Snake", "Lizard", "Komodo Dragon"],
+                answer: "Turtle"
+            },
+            {
+                question: "What is the largest species of tortoise?",
+                options: ["Galápagos Tortoise", "Aldabra Giant Tortoise", "Box Turtle", "Red-footed Tortoise"],
+                answer: "Galápagos Tortoise"
+            },
+            {
+                question: "Which of these reptiles is known for being venomous?",
+                options: ["Iguana", "Komodo Dragon", "Gecko", "Bearded Dragon"],
+                answer: "Komodo Dragon"
+            },
+            {
+                question: "What feature is unique to the Gila Monster?",
+                options: ["Poisonous venom", "Color-changing skin", "Webbed feet", "Long tail"],
+                answer: "Poisonous venom"
+            },
+            {
+                question: "Which reptile is known for its ability to shed its tail as a defense mechanism?",
+                options: ["Lizard", "Turtle", "Snake", "Crocodile"],
+                answer: "Lizard"
+            }
+        ];
+
+        const quizContainer = document.getElementById('quiz');
+
+        questions.forEach((q, index) => {
+            const questionElement = document.createElement('div');
+            questionElement.classList.add('quiz-question');
+            questionElement.innerHTML = `
+                <p><strong>Question ${index + 1}:</strong> ${q.question}</p>
+                <form>
+                    ${q.options.map(option => `
+                        <button type="button" class="option-button" onclick="submitAnswer('${option}', '${q.answer}')">${option}</button>
+                    `).join('')}
+                </form>
+            `;
+            quizContainer.appendChild(questionElement);
+        });
+
+        function submitAnswer(selected, correct) {
+            if (selected === correct) {
+                alert('Correct!');
+            } else {
+                alert('Wrong answer. The correct answer is ' + correct + '.');
+            }
+        }
+
+        // JavaScript for handling the contact form submission
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+
+            const messageDisplay = document.getElementById('messageDisplay');
+            messageDisplay.innerHTML = `<strong>Thank you, ${name}!</strong><br>Your message has been received.<br><strong>Message:</strong><br>${message}`;
+            messageDisplay.style.display = 'block'; // Show the message display
+
+            // Clear the form
+            document.getElementById('contactForm').reset();
+        });
+    </script>
+</body>
+</html>
