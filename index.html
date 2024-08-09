@@ -225,7 +225,11 @@
             }
         }
 
-        // JavaScript for handling the contact form submission
+        document.addEventListener('DOMContentLoaded', () => {
+            // Load saved message on page load
+            loadSavedMessage();
+        });
+
         document.getElementById('contactForm').addEventListener('submit', function(event) {
             event.preventDefault(); // Prevent the default form submission
 
@@ -237,9 +241,26 @@
             messageDisplay.innerHTML = `<strong>Thank you, ${name}!</strong><br>Your message has been received.<br><strong>Message:</strong><br>${message}`;
             messageDisplay.style.display = 'block'; // Show the message display
 
+            // Save the message to local storage
+            localStorage.setItem('contactMessage', JSON.stringify({
+                name: name,
+                email: email,
+                message: message
+            }));
+
             // Clear the form
             document.getElementById('contactForm').reset();
         });
+
+        function loadSavedMessage() {
+            const savedMessage = localStorage.getItem('contactMessage');
+            if (savedMessage) {
+                const { name, message } = JSON.parse(savedMessage);
+                const messageDisplay = document.getElementById('messageDisplay');
+                messageDisplay.innerHTML = `<strong>Thank you, ${name}!</strong><br>Your message has been received.<br><strong>Message:</strong><br>${message}`;
+                messageDisplay.style.display = 'block'; // Show the saved message
+            }
+        }
     </script>
 </body>
 </html>
